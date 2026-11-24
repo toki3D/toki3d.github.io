@@ -297,19 +297,21 @@
 
   /* Footer */
   footer { position: relative; overflow: hidden; background: #161616; border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; }
-  .foot { display: grid; grid-template-columns: repeat(2, minmax(0, 260px)); gap: 28px 40px; padding: 48px 380px 56px 24px; max-width: var(--max); margin: 0 auto; }
-  @media (max-width: 800px) { .foot { grid-template-columns: 1fr 1fr; padding: 40px 16px 150px; } }
+  .foot { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px 40px; padding: 48px 24px; max-width: var(--max); margin: 0 auto; }
+  @media (max-width: 800px) { .foot { grid-template-columns: 1fr 1fr; padding: 40px 16px; } }
   @media (max-width: 480px) { .foot { grid-template-columns: 1fr; } }
   .foot-link { display: flex; gap: 14px; align-items: center; }
-  .foot-link svg { width: 28px; height: 28px; color: var(--text); flex-shrink: 0; }
-  .foot-link b { display: block; color: var(--text); font-size: 15px; }
-  .foot-link:hover b { color: var(--accent-text); }
-  .foot-badge { position: absolute; right: -40px; top: 0; width: 360px; height: 150px; background: var(--accent); color: var(--on-accent); border-bottom-left-radius: 160px 120px; display: grid; place-items: center; padding-left: 40px; }
-  .foot-badge .logo { font-size: 28px; }
-  .foot-badge .logo em { color: var(--on-accent); opacity: .7; }
-  .foot-badge .logo-mark { background: rgba(0,0,0,.15); }
-  .foot-copy { position: absolute; right: 24px; bottom: 18px; font-size: 13px; }
-  @media (max-width: 800px) { .foot-badge { top: auto; bottom: 0; width: 300px; height: 120px; border-radius: 160px 0 0 0; } .foot-copy { left: 16px; right: auto; } }
+  footer { color: #b5b5b5; }
+  .foot-link svg { width: 28px; height: 28px; color: #f2f2f2; flex-shrink: 0; }
+  .foot-link b { display: block; color: #f2f2f2; font-size: 15px; }
+  .foot-link:hover b { color: #7eecc4; }
+  .foot-banner { position: relative; height: 240px; overflow: hidden; background: #7eecc4 url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='56' height='28' viewBox='0 0 56 28'><g fill='%237eecc4' stroke='%2356d3a6' stroke-width='2.2'><circle cx='0' cy='0' r='26'/><circle cx='0' cy='0' r='19'/><circle cx='0' cy='0' r='12'/><circle cx='0' cy='0' r='5'/><circle cx='56' cy='0' r='26'/><circle cx='56' cy='0' r='19'/><circle cx='56' cy='0' r='12'/><circle cx='56' cy='0' r='5'/><circle cx='28' cy='14' r='26'/><circle cx='28' cy='14' r='19'/><circle cx='28' cy='14' r='12'/><circle cx='28' cy='14' r='5'/><circle cx='0' cy='28' r='26'/><circle cx='0' cy='28' r='19'/><circle cx='0' cy='28' r='12'/><circle cx='0' cy='28' r='5'/><circle cx='56' cy='28' r='26'/><circle cx='56' cy='28' r='19'/><circle cx='56' cy='28' r='12'/><circle cx='56' cy='28' r='5'/></g></svg>") 0 0 / 56px 28px; }
+  .foot-wave { position: absolute; left: 0; top: 0; height: 100%; width: 420px; }
+  .foot-brand { position: absolute; right: max(24px, calc((100% - var(--max)) / 2 + 24px)); top: 50%; transform: translateY(-58%); display: flex; align-items: center; gap: 16px; font: 700 clamp(40px, 6vw, 72px)/1 Fredoka, system-ui; color: #0b2a1f; text-shadow: 0 0 18px #7eecc4, 0 0 6px #7eecc4; }
+  .foot-brand img { width: clamp(48px, 6vw, 72px); height: auto; image-rendering: pixelated; filter: drop-shadow(0 0 8px #7eecc4); transition: transform .25s steps(3); }
+  .foot-brand:hover img { transform: translateY(-6px); }
+  .foot-copy { position: absolute; right: max(24px, calc((100% - var(--max)) / 2 + 24px)); bottom: 16px; margin: 0; font-size: 13px; font-weight: 600; color: #0b2a1f; background: #7eecc4; padding: 2px 8px; border-radius: 6px; }
+  @media (max-width: 700px) { .foot-banner { height: 200px; } .foot-wave { width: 260px; } .foot-brand { right: 16px; } }
 
   /* Lightbox */
   dialog { border: 0; padding: 0; background: transparent; max-width: min(1100px, 94vw); width: 100%; margin: auto; }
@@ -847,8 +849,16 @@
       <span><b>Email me</b>Commissions &amp; questions</span>
     </a>
   </div>
-  <div class="foot-badge"><a href="#top" class="logo"><img class="logo-mark" src="images/tw-icon.svg" alt="" width="32" height="32"><span>Tokio<em>Works</em></span></a></div>
-  <p class="foot-copy">© <span id="year"></span> TokioWorks · Imagine. Design. Create.</p>
+  <div class="foot-banner">
+    <svg class="foot-wave" viewBox="0 0 420 240" preserveAspectRatio="xMinYMid slice" aria-hidden="true">
+      <path fill="#161616" d="M0 0H250C190 12 150 52 158 104C164 144 212 150 222 120C230 98 208 86 196 100C210 56 268 48 300 92C338 146 292 240 196 240H0Z"/>
+      <path d="M168 92C186 56 224 42 258 52" stroke="#d9fff1" stroke-width="6" fill="none" stroke-linecap="round"/>
+      <path d="M178 118C182 104 194 98 204 102" stroke="#7eecc4" stroke-width="4" fill="none" stroke-linecap="round" opacity=".7"/>
+      <g fill="#d9fff1"><circle cx="276" cy="40" r="5"/><circle cx="296" cy="58" r="3.5"/><circle cx="262" cy="24" r="3"/></g>
+    </svg>
+    <a href="#top" class="foot-brand"><img src="images/tw-icon.svg" alt="" width="64" height="64"><span>TokioWorks</span></a>
+    <p class="foot-copy">© <span id="year"></span> TokioWorks · Imagine. Design. Create.</p>
+  </div>
 </footer>
 
 <dialog id="lb">

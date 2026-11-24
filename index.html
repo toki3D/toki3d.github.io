@@ -74,6 +74,15 @@
   .nav-links a:not(.btn):hover, .nav-links a.active { color: var(--text); }
   .nav-links a.active::after { content: ""; position: absolute; left: 0; right: 0; bottom: -2px; height: 2px; background: var(--accent); border-radius: 2px; }
   .nav-links .btn { padding: 9px 16px; }
+  /* Sakura that slides behind the hovered menu link */
+  .nav-links { position: relative; }
+  .sakura { position: absolute; left: 0; top: 50%; width: 34px; height: 34px; margin: -17px 0 0 -17px; pointer-events: none; z-index: 0; opacity: 0; transform: translateX(var(--x, 0)) rotate(var(--r, 0deg)) scale(.4); transition: transform .45s cubic-bezier(.3,1.5,.5,1), opacity .25s; }
+  .sakura.show { opacity: 1; transform: translateX(var(--x, 0)) rotate(var(--r, 0deg)) scale(1); }
+  .sakura svg { width: 100%; height: 100%; display: block; }
+  .nav-links li { position: relative; z-index: 1; }
+  .nav-links a.petal-on:not(.btn) { color: #0b2a1f; font-weight: 600; }
+  @media (max-width: 860px), (pointer: coarse) { .sakura { display: none; } }
+  @media (prefers-reduced-motion: reduce) { .sakura { transition: opacity .2s; } }
   .burger { display: none; background: none; border: 0; color: var(--text); cursor: pointer; }
   @media (max-width: 900px) {
     .burger { display: block; }
@@ -857,6 +866,28 @@
   const burger = document.querySelector('.burger'), links = document.querySelector('.nav-links');
   burger.addEventListener('click', () => burger.setAttribute('aria-expanded', links.classList.toggle('open')));
   links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+
+  // Sakura that slides behind the hovered menu link
+  const sak = document.createElement('span');
+  sak.className = 'sakura';
+  sak.setAttribute('aria-hidden', 'true');
+  sak.innerHTML = '<svg viewBox="-50 -50 100 100"><g fill="#7eecc4"><path id="pt" d="M0 -6 C-16 -14 -20 -38 -7 -46 L0 -38 L7 -46 C20 -38 16 -14 0 -6Z"/><use href="#pt" transform="rotate(72)"/><use href="#pt" transform="rotate(144)"/><use href="#pt" transform="rotate(216)"/><use href="#pt" transform="rotate(288)"/><circle r="9" fill="#d9fff1"/></g></svg>';
+  links.prepend(sak);
+  let spin = 0, last = null;
+  links.querySelectorAll('a:not(.btn)').forEach(a => a.addEventListener('mouseenter', () => {
+    const lr = links.getBoundingClientRect(), r = a.getBoundingClientRect();
+    spin += last ? (r.left > last ? 72 : -72) : 0;
+    last = r.left;
+    sak.style.setProperty('--x', (r.left - lr.left + r.width / 2) + 'px');
+    sak.style.setProperty('--r', spin + 'deg');
+    links.querySelectorAll('.petal-on').forEach(x => x.classList.remove('petal-on'));
+    a.classList.add('petal-on');
+    sak.classList.add('show');
+  }));
+  links.addEventListener('mouseleave', () => {
+    sak.classList.remove('show');
+    links.querySelectorAll('.petal-on').forEach(x => x.classList.remove('petal-on'));
+  });
 
   // Twinkling stars
   const starBox = document.querySelector('.stars');

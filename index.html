@@ -297,18 +297,18 @@
 
   /* Footer */
   footer { position: relative; overflow: hidden; background: #161616; border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; }
-  .foot { display: flex; align-items: center; min-height: 210px; padding: 24px 46% 24px 40px; box-sizing: border-box; }
-  .foot-link { padding: 10px 26px; border-left: 1px solid #3a3a3a; }
-  .foot-link:first-child { border-left: 0; padding-left: 0; }
-  .foot-link:nth-child(3) { border-left-color: #7eecc4; }
-  @media (max-width: 1100px) { .foot { flex-wrap: wrap; padding: 32px 16px; gap: 10px 0; } .foot-link { flex: 1 1 45%; border-left: 0; padding: 10px 0; } }
+  .foot { display: flex; align-items: center; min-height: 210px; padding: 24px 40% 24px 32px; box-sizing: border-box; }
+  .foot-link { padding: 10px clamp(10px, 1.6vw, 26px); white-space: nowrap; font-size: 13px; }
+  .foot-link:first-child { padding-left: 0; }
+  @media (max-width: 1100px) { .foot { flex-wrap: wrap; padding: 32px 16px; gap: 10px 0; } .foot-link { flex: 1 1 22%; padding: 10px 0; } }
+  @media (max-width: 800px) { .foot-link { flex-basis: 45%; } }
   @media (max-width: 480px) { .foot-link { flex-basis: 100%; } }
   .foot-link { display: flex; gap: 14px; align-items: center; }
   footer { color: #b5b5b5; }
   .foot-link svg { width: 32px; height: 32px; color: #f2f2f2; flex-shrink: 0; }
-  .foot-link b { display: block; color: #f2f2f2; font-size: 17px; }
+  .foot-link b { display: block; color: #f2f2f2; font-size: clamp(14px, 1.1vw, 17px); }
   .foot-link:hover b { color: #7eecc4; }
-  .foot-banner { position: absolute; right: 0; top: 0; bottom: 0; width: 46%; overflow: hidden; background: #7eecc4 url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='56' height='28' viewBox='0 0 56 28'><g fill='%237eecc4' stroke='%2356d3a6' stroke-width='2.2'><circle cx='0' cy='0' r='26'/><circle cx='0' cy='0' r='19'/><circle cx='0' cy='0' r='12'/><circle cx='0' cy='0' r='5'/><circle cx='56' cy='0' r='26'/><circle cx='56' cy='0' r='19'/><circle cx='56' cy='0' r='12'/><circle cx='56' cy='0' r='5'/><circle cx='28' cy='14' r='26'/><circle cx='28' cy='14' r='19'/><circle cx='28' cy='14' r='12'/><circle cx='28' cy='14' r='5'/><circle cx='0' cy='28' r='26'/><circle cx='0' cy='28' r='19'/><circle cx='0' cy='28' r='12'/><circle cx='0' cy='28' r='5'/><circle cx='56' cy='28' r='26'/><circle cx='56' cy='28' r='19'/><circle cx='56' cy='28' r='12'/><circle cx='56' cy='28' r='5'/></g></svg>") 0 0 / 56px 28px; }
+  .foot-banner { position: absolute; right: 0; top: 0; bottom: 0; width: 40%; overflow: hidden; background: #7eecc4 url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='56' height='28' viewBox='0 0 56 28'><g fill='%237eecc4' stroke='%2356d3a6' stroke-width='2.2'><circle cx='0' cy='0' r='26'/><circle cx='0' cy='0' r='19'/><circle cx='0' cy='0' r='12'/><circle cx='0' cy='0' r='5'/><circle cx='56' cy='0' r='26'/><circle cx='56' cy='0' r='19'/><circle cx='56' cy='0' r='12'/><circle cx='56' cy='0' r='5'/><circle cx='28' cy='14' r='26'/><circle cx='28' cy='14' r='19'/><circle cx='28' cy='14' r='12'/><circle cx='28' cy='14' r='5'/><circle cx='0' cy='28' r='26'/><circle cx='0' cy='28' r='19'/><circle cx='0' cy='28' r='12'/><circle cx='0' cy='28' r='5'/><circle cx='56' cy='28' r='26'/><circle cx='56' cy='28' r='19'/><circle cx='56' cy='28' r='12'/><circle cx='56' cy='28' r='5'/></g></svg>") 0 0 / 56px 28px; }
   .foot-wave { position: absolute; left: -1px; top: 0; height: 100%; width: 300px; }
   .foot-brand { position: absolute; right: 40px; top: 50%; transform: translateY(-58%); display: flex; align-items: center; gap: 16px; font: 700 clamp(36px, 4.2vw, 64px)/1 Fredoka, system-ui; color: #0b2a1f; text-shadow: 0 0 18px #7eecc4, 0 0 6px #7eecc4; }
   .foot-brand img { width: clamp(44px, 4.4vw, 64px); height: auto; image-rendering: pixelated; filter: drop-shadow(0 0 8px #7eecc4); transition: transform .25s steps(3); }

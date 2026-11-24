@@ -7,7 +7,12 @@
 <meta name="description" content="TokioWorks by Tokio: Blender-rendered Minecraft posters, video edits, custom GUIs and the founder of Tokyo Core SMP.">
 <meta property="og:title" content="TokioWorks">
 <meta property="og:description" content="Imagine. Design. Create. Posters, edits and game design by Tokio, founder of Tokyo Core SMP.">
-<meta property="og:image" content="images/poster-nether.jpg">
+<meta property="og:image" content="https://toki3d.github.io/images/poster-nether.jpg">
+<meta property="og:url" content="https://toki3d.github.io/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="TokioWorks">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://toki3d.github.io/">
 <meta name="theme-color" content="#7eecc4">
 <link rel="icon" type="image/svg+xml" href="images/tw-icon.svg">
 <link rel="alternate icon" type="image/png" href="images/tw-icon-96.png">
@@ -120,6 +125,29 @@
   .pill:hover { border-color: rgba(126,236,196,.45); transform: translateY(-2px); box-shadow: inset 0 1px 0 rgba(var(--ink),.08), 0 10px 24px -12px var(--glow); }
   .pill-ic { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; color: var(--accent-text); background: radial-gradient(circle at 30% 25%, rgba(126,236,196,.28), rgba(126,236,196,.06) 70%); border: 1px solid rgba(126,236,196,.35); box-shadow: 0 0 14px -4px var(--glow), inset 0 1px 0 rgba(var(--ink),.12); }
   .pill-ic svg { width: 16px; height: 16px; }
+  .reel-sec { padding-top: 56px; padding-bottom: 0; }
+  .reel { position: relative; border-radius: 22px; overflow: hidden; border: 1px solid var(--line); box-shadow: 0 30px 70px -30px var(--glow); aspect-ratio: 16/9; background: #111; }
+  .reel video { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .reel-tag { position: absolute; left: 16px; top: 16px; padding: 6px 14px; border-radius: 999px; font-size: 13px; font-weight: 700; color: #0b2a1f; background: #7eecc4; }
+  .story { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .story li { border-radius: var(--radius); border: 1px solid var(--line); background: var(--card); overflow: hidden; padding-bottom: 22px; transition: border-color .25s, transform .25s; }
+  .story li:hover { border-color: var(--accent); transform: translateY(-3px); }
+  .story figure { margin: 0 0 18px; aspect-ratio: 16/10; background: #1a2a22; display: grid; place-items: center; overflow: hidden; }
+  .story figure img { width: 100%; height: 100%; object-fit: cover; }
+  .story li:first-child figure img { object-fit: contain; padding: 18px; box-sizing: border-box; }
+  .story-n { display: block; padding: 0 22px; font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--accent-text); }
+  .story h3 { padding: 0 22px; margin: 6px 0; font-family: Fredoka; font-size: 22px; }
+  .story p { padding: 0 22px; margin: 0; color: var(--muted); }
+  @media (max-width: 860px) { .story { grid-template-columns: 1fr; } }
+  .steps-title { font-family: Fredoka; font-size: 26px; margin: 48px 0 16px; }
+  .steps { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; counter-reset: s; }
+  .steps li { position: relative; padding: 20px 18px; border-radius: 16px; border: 1px solid var(--line); background: rgba(var(--ink),.03); }
+  .steps li:not(:last-child)::after { content: "→"; position: absolute; right: -13px; top: 26px; color: var(--accent-text); font-weight: 700; }
+  .steps b { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 10px; background: var(--accent); color: #0b2a1f; font: 700 17px Fredoka; margin-bottom: 12px; }
+  .steps h4 { font-size: 16px; margin: 0 0 4px; }
+  .steps p { font-size: 14px; color: var(--muted); margin: 0; }
+  @media (max-width: 900px) { .steps { grid-template-columns: repeat(2, 1fr); } .steps li::after { display: none; } }
+  @media (max-width: 460px) { .steps { grid-template-columns: 1fr; } }
   .soft { list-style: none; display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; padding: 0; }
   .soft li { display: inline-flex; align-items: center; gap: 10px; padding: 6px 16px 6px 6px; border-radius: 12px; border: 1px solid var(--line); background: rgba(var(--ink),.04); font-size: 14px; font-weight: 600; transition: border-color .25s, transform .25s; }
   .soft li:hover { border-color: var(--accent); transform: translateY(-2px); }
@@ -412,6 +440,16 @@
     </div>
   </div>
 
+  <!-- ================= SHOWREEL ================= -->
+  <section id="reel" class="reel-sec">
+    <div class="wrap">
+      <div class="reel reveal">
+        <video src="videos/showreel.mp4" poster="videos/showreel.jpg" muted loop playsinline preload="none" aria-label="TokioWorks showreel: posters and edits"></video>
+        <span class="reel-tag">Showreel · 2026</span>
+      </div>
+    </div>
+  </section>
+
   <!-- ================= POSTERS ================= -->
   <section id="posters">
     <div class="wrap">
@@ -580,6 +618,35 @@
     </div>
   </section>
 
+  <!-- ================= BEHIND THE SCENES ================= -->
+  <section id="story">
+    <div class="wrap">
+      <div class="head reveal">
+        <div><p class="eyebrow">Behind the scenes</p><h2 class="display">Launching Tokyo Core Season 1</h2><p class="sub">How one season launch went from an idea to posters, teasers and clips.</p></div>
+      </div>
+      <ol class="story reveal">
+        <li>
+          <figure><img src="images/tsmp-logo-s1.webp" alt="Tokyo Core SMP Season 1 logo" loading="lazy"></figure>
+          <span class="story-n">01 · The idea</span>
+          <h3>A Tokyo look</h3>
+          <p>Neon nights, cherry blossoms and Japanese signs. Season 1 needed one look that players would spot instantly.</p>
+        </li>
+        <li>
+          <figure><img src="images/poster-nether.jpg" alt="The Nether is now open poster" loading="lazy"></figure>
+          <span class="story-n">02 · The build</span>
+          <h3>Scenes in Blender</h3>
+          <p>I built each scene in Blender with real player skins, then lit and rendered it into announcement posters.</p>
+        </li>
+        <li>
+          <figure><img src="videos/edit-s1-teaser.jpg" alt="Season 1 teaser frame" loading="lazy"></figure>
+          <span class="story-n">03 · The result</span>
+          <h3>Teasers &amp; clips</h3>
+          <p>Matching teasers and TikTok clips spread the launch, and my biggest clip passed 100K views.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
   <!-- ================= PLUGINS ================= -->
   <section id="plugins">
     <div class="wrap">
@@ -666,6 +733,14 @@
           </div>
         </article>
       </div>
+      <h3 class="steps-title reveal">How it works</h3>
+      <ol class="steps reveal">
+        <li><b>1</b><h4>Message me</h4><p>DM me on Discord or email with what you need.</p></li>
+        <li><b>2</b><h4>Share your idea</h4><p>Send your theme, text, skins and any references.</p></li>
+        <li><b>3</b><h4>First draft</h4><p>I build the scene in Blender and send you a preview.</p></li>
+        <li><b>4</b><h4>Revisions</h4><p>Tell me what to tweak until it feels right.</p></li>
+        <li><b>5</b><h4>Final files</h4><p>You get full-quality files ready to post.</p></li>
+      </ol>
     </div>
   </section>
 
@@ -877,7 +952,7 @@
     const v = e.target;
     if (e.isIntersecting) v.play().catch(() => {}); else v.pause();
   }), { threshold: 0.5 });
-  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.querySelectorAll('#edits video').forEach(v => vio.observe(v));
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.querySelectorAll('#edits video, #reel video').forEach(v => vio.observe(v));
 
   // Copy server IP
   document.getElementById('copy-ip').addEventListener('click', () => {

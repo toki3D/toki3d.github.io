@@ -9,10 +9,13 @@
 <meta property="og:description" content="Imagine. Design. Create. Posters, edits and game design by Tokio, founder of Tokyo Core SMP.">
 <meta property="og:image" content="images/poster-nether.jpg">
 <meta name="theme-color" content="#7eecc4">
-<link rel="icon" href="images/tsmp-logo-s1-icon.png">
+<link rel="icon" type="image/svg+xml" href="images/tw-icon.svg">
+<link rel="alternate icon" type="image/png" href="images/tw-icon-96.png">
+<link rel="apple-touch-icon" href="images/tw-icon-512.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script>try { var t = localStorage.getItem("tw-theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
 <style>
   /* ============ COLOURS (charcoal + light mint) ============ */
   :root {
@@ -27,6 +30,11 @@
     --on-accent: #0b3b2a;         /* dark text on mint */
     --glow: rgba(126, 236, 196, .28);
     --grad-1: #5fe0b2; --grad-2: #8ff0cc; --grad-3: #c4f9e5;
+    --ink: 255,255,255;
+    --text-2: #d4d4d4;
+    --bg-deep: #151515;
+    --header: rgba(24,24,24,.82);
+    --accent-text: #7eecc4;
     --max: 1180px;
     --radius: 16px;
   }
@@ -46,15 +54,16 @@
   .btn svg { width: 18px; height: 18px; }
   .btn.primary { background: var(--accent); color: var(--on-accent); box-shadow: 0 8px 30px -8px var(--glow); }
   .btn.primary:hover { transform: translateY(-2px); box-shadow: 0 12px 36px -6px var(--glow); }
-  .btn.ghost { border-color: var(--line); background: rgba(255,255,255,.03); color: var(--text); }
-  .btn.ghost:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .btn.ghost { border-color: var(--line); background: rgba(var(--ink),.03); color: var(--text); }
+  .btn.ghost:hover { border-color: var(--accent-text); transform: translateY(-2px); }
 
   /* ============ Nav ============ */
-  header { position: fixed; inset: 0 0 auto; z-index: 50; background: rgba(24,24,24,.82); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,.06); }
+  header { position: fixed; inset: 0 0 auto; z-index: 50; background: var(--header); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(var(--ink),.06); }
   nav { display: flex; align-items: center; justify-content: space-between; height: 68px; }
   .logo { display: flex; align-items: center; gap: 10px; font-family: Fredoka; font-weight: 700; font-size: 21px; letter-spacing: .02em; }
-  .logo em { font-style: normal; color: var(--accent); }
-  .logo-mark { width: 34px; height: 34px; border-radius: 10px; background: linear-gradient(135deg, var(--grad-1), var(--grad-3)); color: var(--on-accent); display: grid; place-items: center; font-size: 16px; font-weight: 800; }
+  .logo em { font-style: normal; color: var(--accent-text); }
+  .logo-mark { width: 32px; height: 32px; image-rendering: pixelated; filter: drop-shadow(0 4px 10px rgba(0,0,0,.35)); transition: transform .25s steps(3); }
+  .logo:hover .logo-mark { transform: translateY(-4px); }
   .nav-links { display: flex; align-items: center; gap: 26px; list-style: none; }
   .nav-links a:not(.btn) { color: var(--muted); font-size: 15px; font-weight: 500; position: relative; padding: 6px 0; transition: color .2s; }
   .nav-links a:not(.btn):hover, .nav-links a.active { color: var(--text); }
@@ -80,16 +89,16 @@
 
   .hero-grid { position: relative; z-index: 2; display: grid; grid-template-columns: 1fr 1.05fr; gap: 48px; align-items: center; width: 100%; }
   @media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; } }
-  .tagline { display: inline-flex; gap: 10px; align-items: center; padding: 7px 14px; border-radius: 999px; border: 1px solid var(--line); background: rgba(255,255,255,.04); font-size: 14px; font-weight: 600; color: var(--accent); }
+  .tagline { display: inline-flex; gap: 10px; align-items: center; padding: 7px 14px; border-radius: 999px; border: 1px solid var(--line); background: rgba(var(--ink),.04); font-size: 14px; font-weight: 600; color: var(--accent-text); }
   .hero h1 { font-size: clamp(54px, 8vw, 96px); line-height: 1; margin: 20px 0 16px; }
   .hero h1 span { background: linear-gradient(90deg, var(--accent), var(--grad-3)); -webkit-background-clip: text; background-clip: text; color: transparent; }
   .hero .role { font-size: clamp(18px, 2.2vw, 22px); font-weight: 600; margin-bottom: 14px; }
-  .hero p.lede { font-size: 17px; color: #d4d4d4; max-width: 50ch; }
+  .hero p.lede { font-size: 17px; color: var(--text-2); max-width: 50ch; }
   .hero .cta { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 32px; }
 
   /* Floating poster stack */
   .stack { position: relative; aspect-ratio: 4 / 3.3; width: 100%; max-width: 620px; justify-self: center; }
-  .stack img { position: absolute; width: 74%; border-radius: 14px; box-shadow: 0 30px 60px -20px rgba(0,0,0,.8), 0 0 0 1px rgba(255,255,255,.08); animation: float 7s ease-in-out infinite; }
+  .stack img { position: absolute; width: 74%; border-radius: 14px; box-shadow: 0 30px 60px -20px rgba(0,0,0,.8), 0 0 0 1px rgba(var(--ink),.08); animation: float 7s ease-in-out infinite; }
   .stack img:nth-child(1) { left: 0; top: 4%; transform: rotate(-7deg); animation-delay: -1s; }
   .stack img:nth-child(2) { right: 0; top: 0; transform: rotate(6deg); animation-delay: -3s; }
   .stack img:nth-child(3) { left: 13%; bottom: 0; transform: rotate(-1deg); animation-delay: -5s; box-shadow: 0 40px 80px -20px rgba(0,0,0,.9), 0 0 0 2px var(--accent), 0 0 60px -10px var(--glow); }
@@ -97,31 +106,35 @@
 
   /* ============ Sections ============ */
   section { padding: 96px 0; position: relative; }
-  section.band { background: var(--bg-2); border-top: 1px solid rgba(255,255,255,.05); border-bottom: 1px solid rgba(255,255,255,.05); }
+  section.band { background: var(--bg-2); border-top: 1px solid rgba(var(--ink),.05); border-bottom: 1px solid rgba(var(--ink),.05); }
   .head { display: flex; justify-content: space-between; align-items: end; gap: 20px; flex-wrap: wrap; margin-bottom: 36px; }
   .head h2 { font-size: clamp(32px, 4.5vw, 46px); line-height: 1.1; margin-top: 8px; }
   .head p.sub { color: var(--muted); max-width: 52ch; margin-top: 8px; }
   .link-arrow { font-weight: 600; font-size: 15px; transition: color .2s; }
-  .link-arrow:hover { color: var(--accent); }
+  .link-arrow:hover { color: var(--accent-text); }
 
   .strip { padding: 30px 0; }
   .strip .wrap { display: flex; align-items: center; justify-content: center; gap: 14px; flex-wrap: wrap; }
-  .pill { display: inline-flex; align-items: center; gap: 8px; padding: 9px 16px; border-radius: 999px; border: 1px solid var(--line); background: rgba(255,255,255,.03); font-size: 14px; font-weight: 600; }
-  .pill { padding: 6px 18px 6px 6px; gap: 11px; background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.015)); border-color: rgba(255,255,255,.09); box-shadow: inset 0 1px 0 rgba(255,255,255,.06); transition: border-color .25s, transform .25s, box-shadow .25s; }
-  .pill:hover { border-color: rgba(126,236,196,.45); transform: translateY(-2px); box-shadow: inset 0 1px 0 rgba(255,255,255,.08), 0 10px 24px -12px var(--glow); }
-  .pill-ic { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; color: var(--accent); background: radial-gradient(circle at 30% 25%, rgba(126,236,196,.28), rgba(126,236,196,.06) 70%); border: 1px solid rgba(126,236,196,.35); box-shadow: 0 0 14px -4px var(--glow), inset 0 1px 0 rgba(255,255,255,.12); }
+  .pill { display: inline-flex; align-items: center; gap: 8px; padding: 9px 16px; border-radius: 999px; border: 1px solid var(--line); background: rgba(var(--ink),.03); font-size: 14px; font-weight: 600; }
+  .pill { padding: 6px 18px 6px 6px; gap: 11px; background: linear-gradient(180deg, rgba(var(--ink),.05), rgba(var(--ink),.015)); border-color: rgba(var(--ink),.09); box-shadow: inset 0 1px 0 rgba(var(--ink),.06); transition: border-color .25s, transform .25s, box-shadow .25s; }
+  .pill:hover { border-color: rgba(126,236,196,.45); transform: translateY(-2px); box-shadow: inset 0 1px 0 rgba(var(--ink),.08), 0 10px 24px -12px var(--glow); }
+  .pill-ic { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; color: var(--accent-text); background: radial-gradient(circle at 30% 25%, rgba(126,236,196,.28), rgba(126,236,196,.06) 70%); border: 1px solid rgba(126,236,196,.35); box-shadow: 0 0 14px -4px var(--glow), inset 0 1px 0 rgba(var(--ink),.12); }
   .pill-ic svg { width: 16px; height: 16px; }
+  .soft { list-style: none; display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; padding: 0; }
+  .soft li { display: inline-flex; align-items: center; gap: 10px; padding: 6px 16px 6px 6px; border-radius: 12px; border: 1px solid var(--line); background: rgba(var(--ink),.04); font-size: 14px; font-weight: 600; transition: border-color .25s, transform .25s; }
+  .soft li:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .soft b { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 8px; font: 700 14px/1 Fredoka, system-ui; color: #fff; background: linear-gradient(135deg, var(--c1), var(--c2)); }
   .hit-badge svg { width: 16px; height: 16px; }
 
   .sep { background: var(--bg); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 26px 16px; text-align: center; font-size: 17px; font-weight: 500; }
-  .sep a { color: var(--accent); font-weight: 700; }
+  .sep a { color: var(--accent-text); font-weight: 700; }
   .sep a:hover { text-decoration: underline; }
 
   /* Filter chips */
   .chips { display: flex; gap: 8px; flex-wrap: wrap; }
-  .chips button { font: inherit; font-size: 14px; font-weight: 600; padding: 8px 16px; border-radius: 999px; cursor: pointer; color: var(--text); background: rgba(255,255,255,.03); border: 1px solid var(--line); transition: all .2s; }
-  .chips button:hover { border-color: var(--accent); }
-  .chips button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+  .chips button { font: inherit; font-size: 14px; font-weight: 600; padding: 8px 16px; border-radius: 999px; cursor: pointer; color: var(--text); background: rgba(var(--ink),.03); border: 1px solid var(--line); transition: all .2s; }
+  .chips button:hover { border-color: var(--accent-text); }
+  .chips button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent-text); color: var(--on-accent); }
 
   /* Featured slider */
   .featured { display: grid; grid-template-columns: 1.7fr 1fr; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); background: var(--card); margin-bottom: 28px; }
@@ -135,7 +148,7 @@
   .featured-info p { color: var(--muted); }
   .dots { display: flex; gap: 8px; margin-top: 24px; }
   .dots button { width: 10px; height: 10px; border-radius: 50%; border: 1.5px solid var(--muted); background: transparent; cursor: pointer; padding: 0; }
-  .dots button.on { background: var(--accent); border-color: var(--accent); }
+  .dots button.on { background: var(--accent); border-color: var(--accent-text); }
 
   /* Image tiles (posters) */
   .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 22px; }
@@ -165,7 +178,7 @@
   .hit h3 { font-size: 34px; line-height: 1.15; margin: 16px 0 12px; }
   .hit p { color: var(--muted); max-width: 46ch; }
   .hit-stats { display: flex; gap: 32px; margin: 26px 0; }
-  .hit-stats b { display: block; font-family: Fredoka; font-size: 34px; color: var(--accent); line-height: 1; }
+  .hit-stats b { display: block; font-family: Fredoka; font-size: 34px; color: var(--accent-text); line-height: 1; }
   .hit-stats span { color: var(--muted); font-size: 14px; }
   .play { position: absolute; top: 12px; right: 12px; width: 38px; height: 38px; border-radius: 50%; background: rgba(0,0,0,.55); display: grid; place-items: center; color: #fff; backdrop-filter: blur(4px); }
   .play svg { width: 16px; height: 16px; margin-left: 2px; }
@@ -179,43 +192,43 @@
   .badge-live i { width: 8px; height: 8px; border-radius: 50%; background: #4ade80; box-shadow: 0 0 10px #4ade80; animation: pulse 1.6s infinite; }
   @keyframes pulse { 50% { opacity: .35; } }
   .smp-logo { width: min(320px, 80%); margin-bottom: 10px; filter: drop-shadow(0 12px 30px rgba(0,0,0,.6)); }
-  .smp p { color: #d4d4d4; margin-top: 12px; }
+  .smp p { color: var(--text-2); margin-top: 12px; }
   .ip { display: flex; align-items: center; gap: 10px; margin-top: 22px; padding: 12px 14px 12px 18px; border-radius: 12px; background: var(--card); border: 1px dashed var(--accent); font-weight: 600; flex-wrap: wrap; }
-  .ip code { font-family: ui-monospace, Consolas, monospace; font-size: 16px; color: var(--accent); flex: 1; }
+  .ip code { font-family: ui-monospace, Consolas, monospace; font-size: 16px; color: var(--accent-text); flex: 1; }
   .ip button { font: inherit; font-size: 13px; font-weight: 700; padding: 7px 12px; border-radius: 8px; border: 0; background: var(--accent); color: var(--on-accent); cursor: pointer; }
   .built { margin-top: 64px; }
   .squares { display: grid; grid-template-columns: repeat(6, 1fr); gap: 18px; }
   @media (max-width: 1000px) { .squares { grid-template-columns: repeat(3, 1fr); } }
   @media (max-width: 460px) { .squares { grid-template-columns: repeat(2, 1fr); gap: 12px; } }
-  .sq { position: relative; aspect-ratio: 1; border-radius: 14px; overflow: hidden; background: #151515; border: 1px solid var(--line); cursor: zoom-in; transition: transform .25s, box-shadow .25s; }
+  .sq { position: relative; aspect-ratio: 1; border-radius: 14px; overflow: hidden; background: var(--bg-deep); border: 1px solid var(--line); cursor: zoom-in; transition: transform .25s, box-shadow .25s; }
   .sq:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 18px 36px -14px var(--glow); }
   .sq img { width: 100%; height: 100%; object-fit: cover; }
   .sq img.contain { object-fit: contain; padding: 8px; }
   .sq figcaption { position: absolute; inset: auto 0 0; padding: 26px 10px 10px; text-align: center; font-family: Fredoka; font-weight: 700; font-size: 16px; text-transform: uppercase; color: #fff; background: linear-gradient(transparent, rgba(0,0,0,.85)); }
   .ribbon { position: absolute; top: 10px; right: -30px; transform: rotate(45deg); width: 110px; text-align: center; background: var(--accent); color: var(--on-accent); font-size: 11px; font-weight: 800; letter-spacing: .1em; padding: 3px 0; z-index: 1; }
-  .tooltips { margin-top: 18px; border-radius: 14px; overflow: hidden; border: 1px solid var(--line); background: #151515; padding: 14px; }
+  .tooltips { margin-top: 18px; border-radius: 14px; overflow: hidden; border: 1px solid var(--line); background: var(--bg-deep); padding: 14px; }
   .tooltips img { width: 100%; image-rendering: pixelated; }
   .tooltips p { color: var(--muted); font-size: 14px; margin-top: 8px; text-align: center; }
 
   /* Stats */
   .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; text-align: center; }
   @media (max-width: 700px) { .stats { grid-template-columns: repeat(2, 1fr); } }
-  .stat b { display: block; font-family: Fredoka; font-size: clamp(36px, 5vw, 52px); line-height: 1.1; color: var(--accent); }
+  .stat b { display: block; font-family: Fredoka; font-size: clamp(36px, 5vw, 52px); line-height: 1.1; color: var(--accent-text); }
   .stat span { color: var(--muted); font-size: 14px; }
 
   /* Commission cards */
   .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
   @media (max-width: 900px) { .cards { grid-template-columns: 1fr; } }
   .card { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; display: flex; flex-direction: column; transition: border-color .2s, transform .2s; }
-  .card:hover { border-color: var(--accent); transform: translateY(-3px); }
+  .card:hover { border-color: var(--accent-text); transform: translateY(-3px); }
   .card-img { aspect-ratio: 16 / 10; overflow: hidden; }
   .card-img img, .card-img video { width: 100%; height: 100%; object-fit: cover; }
   .card-body { padding: 22px; flex: 1; display: flex; flex-direction: column; gap: 10px; }
-  .badge { align-self: flex-start; font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
+  .badge { align-self: flex-start; font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--accent-text); }
   .card-body h3 { font-family: Fredoka; font-size: 23px; }
   .card-body > p { color: var(--muted); font-size: 15px; }
   .card-body ul { list-style: none; font-size: 14px; display: flex; flex-wrap: wrap; gap: 6px; }
-  .card-body li { padding: 3px 10px; border-radius: 999px; background: rgba(255,255,255,.06); }
+  .card-body li { padding: 3px 10px; border-radius: 999px; background: rgba(var(--ink),.06); }
   .card-foot { display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: 12px; border-top: 1px solid var(--line); }
   .card-foot span { font-family: Fredoka; font-size: 18px; }
 
@@ -224,7 +237,7 @@
   @media (max-width: 800px) { .about { grid-template-columns: 1fr; } }
   .avatar { aspect-ratio: 1; border-radius: 28px; overflow: hidden; border: 2px solid var(--accent); box-shadow: 0 0 60px -10px var(--glow); max-width: 320px; }
   .avatar img { width: 100%; height: 100%; object-fit: cover; }
-  .about p { color: #d4d4d4; font-size: 17px; margin-top: 16px; }
+  .about p { color: var(--text-2); font-size: 17px; margin-top: 16px; }
 
   /* FAQ */
   .faq { max-width: 760px; margin: 0 auto; }
@@ -232,7 +245,7 @@
   .faq summary { list-style: none; cursor: pointer; padding: 18px 22px; font-weight: 600; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
   .faq summary::-webkit-details-marker { display: none; }
   .faq summary::after { content: "›"; font-size: 26px; line-height: 1; transition: transform .25s; color: var(--muted); }
-  .faq details[open] summary::after { transform: rotate(90deg); color: var(--accent); }
+  .faq details[open] summary::after { transform: rotate(90deg); color: var(--accent-text); }
   .faq details p { padding: 0 22px 20px; color: var(--muted); }
 
   /* Contact box */
@@ -253,7 +266,7 @@
   .foot-link { display: flex; gap: 14px; align-items: center; }
   .foot-link svg { width: 28px; height: 28px; color: var(--text); flex-shrink: 0; }
   .foot-link b { display: block; color: var(--text); font-size: 15px; }
-  .foot-link:hover b { color: var(--accent); }
+  .foot-link:hover b { color: var(--accent-text); }
   .foot-badge { position: absolute; right: -40px; top: 0; width: 360px; height: 150px; background: var(--accent); color: var(--on-accent); border-bottom-left-radius: 160px 120px; display: grid; place-items: center; padding-left: 40px; }
   .foot-badge .logo { font-size: 28px; }
   .foot-badge .logo em { color: var(--on-accent); opacity: .7; }
@@ -282,6 +295,56 @@
     .stack img, .star, .badge-live i { animation: none; }
     html { scroll-behavior: auto; }
   }
+
+  :root[data-theme="light"] {
+    --bg: #f5f8f6; --bg-2: #ebf1ee; --card: #ffffff; --line: #d9e2dd;
+    --text: #14201b; --muted: #5a6b64; --text-2: #33433c;
+    --bg-deep: #e6ede9; --header: rgba(248,251,249,.86);
+    --ink: 10,40,28; --accent-text: #0c8a62;
+    --glow: rgba(38,180,130,.28);
+    color-scheme: light;
+  }
+  :root[data-theme="light"] .hero-bg { opacity: .1; filter: blur(3px) saturate(.6) brightness(1.4); }
+  :root[data-theme="light"] .star { color: #2fbf8a; }
+  :root[data-theme="light"] .stack img { box-shadow: 0 30px 60px -24px rgba(20,40,30,.45), 0 0 0 1px rgba(0,0,0,.06); }
+  :root[data-theme="light"] .hero h1 span { background: linear-gradient(90deg, #14a777, #3cc996); -webkit-background-clip: text; background-clip: text; }
+  .theme-btn { width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center; cursor: pointer; color: var(--text); background: rgba(var(--ink),.05); border: 1px solid var(--line); transition: border-color .2s, transform .2s; }
+  .theme-btn:hover { border-color: var(--accent); transform: rotate(15deg); }
+  .theme-btn svg { width: 18px; height: 18px; }
+  .theme-btn .sun { display: none; }
+  :root[data-theme="light"] .theme-btn .sun { display: block; }
+  :root[data-theme="light"] .theme-btn .moon { display: none; }
+  body, header, .card, .tile, .sq { transition: background-color .35s, border-color .35s, color .35s; }
+
+  /* Plugins */
+  .plugin { display: grid; grid-template-columns: 1.25fr 1fr; gap: 0; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); background: var(--card); margin-bottom: 28px; transition: border-color .25s, transform .25s; }
+  .plugin:hover { border-color: var(--accent); transform: translateY(-3px); }
+  .plugin.flip { grid-template-columns: 1fr 1.25fr; }
+  .plugin.flip .plugin-art { order: 2; }
+  @media (max-width: 860px) { .plugin, .plugin.flip { grid-template-columns: 1fr; } .plugin.flip .plugin-art { order: 0; } }
+  .plugin-art { position: relative; min-height: 280px; background: #1a2a22; cursor: zoom-in; overflow: hidden; }
+  .plugin-art img { width: 100%; height: 100%; object-fit: cover; image-rendering: pixelated; transition: transform .5s; }
+  .plugin.wide { grid-template-columns: 1fr; }
+  .plugin.wide .plugin-body { display: grid; grid-template-columns: 1fr 1fr; column-gap: 36px; align-items: start; }
+  .plugin.wide .plugin-body > .plugin-tag, .plugin.wide .plugin-body > h3, .plugin.wide .plugin-body > p { grid-column: 1; }
+  .plugin.wide .plugin-stats { grid-column: 2; grid-row: 1 / span 3; align-self: center; }
+  .plugin.wide .plugin-feats { grid-column: 1 / -1; }
+  @media (max-width: 860px) { .plugin.wide .plugin-body { grid-template-columns: 1fr; } .plugin.wide .plugin-stats { grid-column: 1; grid-row: auto; } }
+  .plugin-art.contain { background: #222a25; display: grid; place-items: center; padding: 12px; }
+  .plugin-art.contain img { height: auto; object-fit: contain; }
+  .plugin:hover .plugin-art img { transform: scale(1.03); }
+  .plugin-body { padding: 32px; display: flex; flex-direction: column; gap: 12px; justify-content: center; }
+  .plugin-tag { font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--accent-text); }
+  .plugin-tag code { font-family: ui-monospace, Consolas, monospace; text-transform: none; letter-spacing: 0; padding: 2px 8px; border-radius: 6px; background: rgba(var(--ink),.07); color: var(--text); }
+  .plugin-body h3 { font-family: Fredoka; font-size: 30px; line-height: 1.15; }
+  .plugin-body > p { color: var(--muted); }
+  .plugin-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 6px 0; }
+  .plugin-stats div { padding: 12px 10px; border-radius: 12px; background: rgba(var(--ink),.04); border: 1px solid var(--line); text-align: center; }
+  .plugin-stats b { display: block; font-family: Fredoka; font-size: 24px; color: var(--accent-text); line-height: 1.1; }
+  .plugin-stats span { font-size: 12px; color: var(--muted); }
+  @media (max-width: 460px) { .plugin-stats { grid-template-columns: repeat(2, 1fr); } .plugin-body { padding: 22px; } }
+  .plugin-feats { list-style: none; display: flex; flex-wrap: wrap; gap: 6px; font-size: 13px; }
+  .plugin-feats li { padding: 4px 11px; border-radius: 999px; border: 1px solid var(--line); background: rgba(var(--ink),.04); }
 </style>
 </head>
 <body>
@@ -289,7 +352,7 @@
 <!-- ================= NAV ================= -->
 <header>
   <nav class="wrap">
-    <a href="#top" class="logo"><span class="logo-mark">TW</span><span>Tokio<em>Works</em></span></a>
+    <a href="#top" class="logo"><img class="logo-mark" src="images/tw-icon.svg" alt="" width="32" height="32"><span>Tokio<em>Works</em></span></a>
     <button class="burger" aria-label="Menu" aria-expanded="false">
       <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
     </button>
@@ -298,8 +361,10 @@
       <li><a href="#posters">Posters</a></li>
       <li><a href="#edits">Edits</a></li>
       <li><a href="#tokyocore">Tokyo Core</a></li>
+      <li><a href="#plugins">Plugins</a></li>
       <li><a href="#commissions">Commissions</a></li>
       <li><a href="#about">About</a></li>
+      <li><button type="button" class="theme-btn" id="theme-btn" aria-label="Switch light or dark mode"><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg></button></li>
       <li><a href="#contact" class="btn primary">Hire me</a></li>
     </ul>
   </nav>
@@ -425,7 +490,7 @@
         <div>
           <span class="hit-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>Famous clips</span>
           <h3>Clips that took off on TikTok</h3>
-          <p>Funny moments, builds and events from Tokyo Core SMP. I record, edit and post all of them myself. My biggest one passed <a href="https://www.tiktok.com/@mateotoki/video/7664473353335491841" target="_blank" rel="noopener" style="color:var(--accent);font-weight:600">100K views</a>.</p>
+          <p>Funny moments, builds and events from Tokyo Core SMP. I record, edit and post all of them myself. My biggest one passed <a href="https://www.tiktok.com/@mateotoki/video/7664473353335491841" target="_blank" rel="noopener" style="color:var(--accent-text);font-weight:600">100K views</a>.</p>
           <div class="hit-stats"><div><b>100K+</b><span>top clip views</span></div><div><b>20.3K</b><span>this clip</span></div><div><b>35+</b><span>SMP clips</span></div></div>
           <a class="btn primary" href="https://www.tiktok.com/@mateotoki" target="_blank" rel="noopener">See all on TikTok →</a>
         </div>
@@ -486,7 +551,7 @@
           <p class="eyebrow">Founder &amp; owner</p>
           <h2 class="display" style="font-size:clamp(30px,4vw,42px);margin-top:6px">I built a server people actually play on.</h2>
           <p>Tokyo Core SMP is a Japanese-themed Minecraft community I founded and run. I design its look from the ground up: menus, crates, cosmetics, ranks, posters and trailers, then manage the community that plays it.</p>
-          <p>Season 1 hit <strong style="color:var(--accent)">100+ players online at the same time.</strong></p>
+          <p>Season 1 hit <strong style="color:var(--accent-text)">100+ players online at the same time.</strong></p>
           <div class="ip">
             <span>Join:</span><code id="ip">play.tokyocoresmp.xyz</code>
             <button type="button" id="copy-ip">Copy IP</button>
@@ -512,6 +577,51 @@
           <p>Custom animated tooltips: Indigo Wave, Shrine Lacquer &amp; Jade Bamboo</p>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- ================= PLUGINS ================= -->
+  <section id="plugins">
+    <div class="wrap">
+      <div class="head reveal">
+        <div>
+          <p class="eyebrow">Made for Tokyo Core</p>
+          <h2 class="display">Plugins</h2>
+          <p class="sub">Custom server plugins I designed for Tokyo Core SMP, running on Paper and Folia.</p>
+        </div>
+      </div>
+
+      <article class="plugin wide reveal">
+        <figure class="plugin-art contain" data-full="images/plugin-quests.png" data-title="WeeklyQuests menus"><img src="images/plugin-quests.webp" alt="Animated WeeklyQuests menus: quest board, weekly task page and leaderboard in a bamboo shrine style" loading="lazy"></figure>
+        <div class="plugin-body">
+          <p class="plugin-tag">Quests · v1.0.0 · <code>/quests</code></p>
+          <h3>WeeklyQuests</h3>
+          <p>A 14-week, RPG-style quest journey. Players unlock a new week every 7 days, climb 28 Japanese rank tiers from Ronin Wanderer to Kami no Kōtei, and open reward pouches along the way.</p>
+          <div class="plugin-stats">
+            <div><b>441</b><span>quests</span></div>
+            <div><b>14</b><span>weeks</span></div>
+            <div><b>28</b><span>rank tiers</span></div>
+            <div><b>250</b><span>level cap</span></div>
+          </div>
+          <ul class="plugin-feats"><li>Custom pixel-art menus</li><li>Reward pouches</li><li>Weekly unlocks</li><li>Leaderboard</li><li>Folia ready</li></ul>
+        </div>
+      </article>
+
+      <article class="plugin flip reveal">
+        <figure class="plugin-art" data-full="images/plugin-cropxp.jpg" data-title="TokioCropXp"><img src="images/plugin-cropxp.jpg" alt="Pixel crops with glowing XP orbs floating above them" loading="lazy"></figure>
+        <div class="plugin-body">
+          <p class="plugin-tag">Farming · v1.1.0 · <code>/cropxp</code></p>
+          <h3>TokioCropXp: Harvest XP</h3>
+          <p>Farming finally pays XP. Fully grown crops drop XP orbs, with daily limits that grow with your vote rank, lucky harvests, and surprise Harvest Festivals that pull the whole server to their farms.</p>
+          <div class="plugin-stats">
+            <div><b>12</b><span>crops</span></div>
+            <div><b>1,200</b><span>XP / day max</span></div>
+            <div><b>5</b><span>festival events</span></div>
+            <div><b>1%</b><span>lucky harvest</span></div>
+          </div>
+          <ul class="plugin-feats"><li>Anti-AFK</li><li>Anti-exploit</li><li>Season bonus</li><li>XP pop-up</li><li>Placeholders</li></ul>
+        </div>
+      </article>
     </div>
   </section>
 
@@ -568,6 +678,14 @@
         <h2 class="display" style="font-size:clamp(32px,4.5vw,44px);margin-top:8px">Hi, I'm Tokio</h2>
         <p>Welcome to TokioWorks, an independent creative brand I founded, specializing in 3D modeling, custom GUI design, icons, game assets and immersive digital experiences.</p>
         <p>As the founder and owner of Tokyo Core SMP, a thriving Minecraft community, I combine creative design, technical expertise and community management to deliver distinctive gaming experiences. Through TokioWorks, I aim to transform imaginative concepts into visually striking, functional and innovative digital creations.</p>
+        <p class="eyebrow" style="margin-top:22px">Software I use</p>
+        <ul class="soft">
+          <li><b style="--c1:#f5792a;--c2:#265787">Bl</b>Blender</li>
+          <li><b style="--c1:#00c4cc;--c2:#7d2ae8">Ca</b>Canva</li>
+          <li><b style="--c1:#2a0a3f;--c2:#2a0a3f;color:#ea77ff">Pr</b>Premiere Pro</li>
+          <li><b style="--c1:#001e36;--c2:#001e36;color:#31a8ff">Ps</b>Photoshop</li>
+          <li><b style="--c1:#00005b;--c2:#00005b;color:#9999ff">Ae</b>After Effects</li>
+        </ul>
       </div>
     </div>
   </section>
@@ -625,16 +743,16 @@
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 5.8A4.3 4.3 0 0115.5 3h-3.1v12.4a2.6 2.6 0 11-1.8-2.5V9.8a5.7 5.7 0 104.9 5.6V9.1a7.3 7.3 0 004.3 1.4V7.4a4.3 4.3 0 01-3.2-1.6z"/></svg>
       <span><b>Watch my edits</b>TikTok @mateotoki</span>
     </a>
-    <a href="https://github.com/padillacalvo0-ctrl" class="foot-link" target="_blank" rel="noopener">
+    <a href="https://github.com/toki3D" class="foot-link" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a12 12 0 00-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.2.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 016 0C17.3 4.7 18.3 5 18.3 5c.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.1 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0012 .5z"/></svg>
-      <span><b>GitHub</b>padillacalvo0-ctrl</span>
+      <span><b>GitHub</b>toki3D</span>
     </a>
     <a href="mailto:padilla.calvo0@gmail.com" class="foot-link">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 6l10 7 10-7"/></svg>
       <span><b>Email me</b>Commissions &amp; questions</span>
     </a>
   </div>
-  <div class="foot-badge"><a href="#top" class="logo"><span class="logo-mark">TW</span><span>Tokio<em>Works</em></span></a></div>
+  <div class="foot-badge"><a href="#top" class="logo"><img class="logo-mark" src="images/tw-icon.svg" alt="" width="32" height="32"><span>Tokio<em>Works</em></span></a></div>
   <p class="foot-copy">© <span id="year"></span> TokioWorks · Imagine. Design. Create.</p>
 </footer>
 
@@ -672,6 +790,13 @@
     secs.forEach((s, i) => { if (s && s.getBoundingClientRect().top < 140) cur = navAs[i]; });
     navAs.forEach(a => a.classList.toggle('active', a === cur));
   }, { passive: true });
+
+  // Light / dark mode
+  document.getElementById('theme-btn').addEventListener('click', () => {
+    const next = document.documentElement.dataset.theme === 'light' ? 'dark' : 'light';
+    document.documentElement.dataset.theme = next;
+    try { localStorage.setItem('tw-theme', next); } catch (e) {}
+  });
 
   // Featured slider
   const slides = [...document.querySelectorAll('.slide')], dots = document.querySelector('.dots');
@@ -731,7 +856,7 @@
   const lb = document.getElementById('lb'), lbMedia = document.getElementById('lb-media'), lbTitle = document.getElementById('lb-title');
   function openLB(el, title) { lbMedia.replaceChildren(el); lbTitle.textContent = title; lb.showModal(); }
   document.addEventListener('click', e => {
-    const item = e.target.closest('.tile, .sq, .smp-shot, .slides');
+    const item = e.target.closest('.tile, .sq, .smp-shot, .slides, .plugin-art');
     if (!item) return;
     const title = item.querySelector('h4, figcaption')?.textContent || item.dataset.title || document.getElementById('f-title').textContent;
     if (item.dataset.video) {

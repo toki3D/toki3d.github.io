@@ -31,7 +31,13 @@
   .btn.main { background: var(--mint); color: var(--ink); border-color: var(--mint); }
   .ic { width: 28px; height: 28px; flex-shrink: 0; display: grid; place-items: center; color: var(--mint); transition: transform .25s; }
   .ic svg { width: 22px; height: 22px; }
-  .btn:hover .ic { transform: scale(1.08) rotate(-4deg); }
+  .ic svg { animation: float 3.6s ease-in-out infinite, glow 2.8s ease-in-out infinite; }
+  .links .btn:nth-child(2) .ic svg { animation-delay: -.9s, .35s; } .links .btn:nth-child(3) .ic svg { animation-delay: -1.8s, .7s; } .links .btn:nth-child(4) .ic svg { animation-delay: -2.7s, 1.05s; }
+  .btn.main .ic svg { animation-name: float, glowd; }
+  @keyframes float { 0%,100% { transform: translateY(2px) rotate(-3deg); } 50% { transform: translateY(-3px) rotate(3deg); } }
+  @keyframes glow { 0%,100% { filter: drop-shadow(0 0 0 rgba(126,236,196,0)); } 50% { filter: drop-shadow(0 0 6px rgba(126,236,196,.9)) drop-shadow(0 0 12px rgba(126,236,196,.5)); } }
+  @keyframes glowd { 0%,100% { filter: none; } 50% { filter: drop-shadow(0 0 5px rgba(255,255,255,.9)); } }
+  @media (prefers-reduced-motion: reduce) { .ic svg { animation: none; } }
   .btn.main .ic { color: var(--ink); }
   .btn > div { min-width: 0; }
   .btn b, .btn span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }

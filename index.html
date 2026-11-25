@@ -178,8 +178,17 @@
   .sep a:hover { text-decoration: underline; }
 
   /* Filter chips */
-  .chips { display: flex; gap: 8px; flex-wrap: wrap; }
+  .chips { display: flex; gap: 8px; flex-wrap: wrap; position: relative; }
+  .chip-ind { position: absolute; left: 0; top: 0; border-radius: 999px; background: var(--accent); box-shadow: 0 8px 22px -8px var(--glow); pointer-events: none; transition: transform .45s cubic-bezier(.3,1.4,.5,1), width .45s cubic-bezier(.3,1.4,.5,1), height .3s; }
+  .chips.ready button[aria-pressed="true"] { background: transparent; }
+  .chips button { position: relative; z-index: 1; }
+  .chips button:active { transform: scale(.94); }
+  @media (prefers-reduced-motion: reduce) { .chip-ind { transition: none; } }
   .chips button { font: inherit; font-size: 14px; font-weight: 600; padding: 8px 16px; border-radius: 999px; cursor: pointer; color: var(--text); background: rgba(var(--ink),.03); border: 1px solid var(--line); transition: all .2s; }
+  #poster-grid { scroll-margin-top: 90px; }
+  #poster-grid.pop .tile { animation: tile-pop .5s ease both; }
+  @keyframes tile-pop { from { opacity: 0; transform: translateY(14px) scale(.97); } }
+  @media (prefers-reduced-motion: reduce) { #poster-grid.pop .tile { animation: none; } }
   .chips button:hover { border-color: var(--accent-text); }
   .chips button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent-text); color: var(--on-accent); }
 
@@ -472,6 +481,7 @@
       <span class="pill"><i class="pill-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.2 6 3 11l-.9-2.4c-.3-1.1.3-2.2 1.3-2.5l13.5-4c1.1-.3 2.2.3 2.5 1.3Z"/><path d="m6.2 5.3 3.1 3.9"/><path d="m12.4 3.4 3.1 4"/><path d="M3 11h18v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/></svg></i>Video editing</span>
       <span class="pill"><i class="pill-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg></i>Custom GUIs</span>
       <span class="pill"><i class="pill-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/></svg></i>Icons &amp; game assets</span>
+      <span class="pill"><i class="pill-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="8" x="2" y="2" rx="2"/><rect width="20" height="8" x="2" y="14" rx="2"/><path d="M6 6h.01"/><path d="M6 18h.01"/></svg></i>Server Owner</span>
     </div>
   </div>
 
@@ -494,7 +504,7 @@
           <h2 class="display">Posters</h2>
           <p class="sub">Every poster is a 3D scene I build and render myself: the players, the lighting, the type.</p>
         </div>
-        <div class="chips" role="group" aria-label="Filter posters">
+        <div class="chips" role="group" aria-label="Filter posters"><span class="chip-ind" aria-hidden="true"></span>
           <button aria-pressed="true" data-f="all">All</button>
           <button aria-pressed="false" data-f="spotlight">Spotlights</button>
           <button aria-pressed="false" data-f="event">Events</button>
@@ -983,10 +993,23 @@
 
   // Poster filters
   const chips = document.querySelectorAll('.chips button'), posterTiles = document.querySelectorAll('#poster-grid .tile');
+  const chipInd = document.querySelector('.chip-ind');
+  function moveInd() {
+    const on = document.querySelector('.chips button[aria-pressed="true"]');
+    if (!on || !chipInd) return;
+    chipInd.style.width = on.offsetWidth + 'px'; chipInd.style.height = on.offsetHeight + 'px';
+    chipInd.style.transform = 'translate(' + on.offsetLeft + 'px,' + on.offsetTop + 'px)';
+    chipInd.parentElement.classList.add('ready');
+  }
+  moveInd(); addEventListener('resize', moveInd); document.fonts && document.fonts.ready.then(moveInd);
   chips.forEach(c => c.addEventListener('click', () => {
     chips.forEach(x => x.setAttribute('aria-pressed', x === c));
+    moveInd();
     posterTiles.forEach(t => t.hidden = c.dataset.f !== 'all' && t.dataset.cat !== c.dataset.f);
     fillGaps();
+    const grid = document.getElementById("poster-grid");
+    grid.classList.remove("pop"); void grid.offsetWidth; grid.classList.add("pop");
+    setTimeout(() => window.scrollTo({ top: grid.getBoundingClientRect().top + scrollY - 90, behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" }), 60);
   }));
 
   // No blank space: repeat tiles to finish the last grid row and to fill short video rows

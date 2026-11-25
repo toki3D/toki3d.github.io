@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tokio's links | TokioWorks</title>
+<meta name="description" content="All of Tokio's links: portfolio, TikTok, Tokyo Core SMP Discord, commissions and more.">
+<meta property="og:title" content="Tokio's links">
+<meta property="og:description" content="Portfolio, TikTok, Tokyo Core SMP and commissions, all in one place.">
+<meta property="og:image" content="https://toki3d.github.io/images/poster-nether.jpg">
+<meta property="og:url" content="https://toki3d.github.io/links/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#7eecc4">
+<link rel="icon" type="image/svg+xml" href="/images/tw-icon.svg">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root { --mint: #7eecc4; --ink: #0b2a1f; }
+  * { box-sizing: border-box; }
+  body { margin: 0; overflow-x: hidden; min-height: 100vh; color: #f2f2f2; font-family: Outfit, system-ui, sans-serif; background: #161616; display: flex; justify-content: center; padding: 0 16px 40px; }
+  @media (pointer: fine) { html, a, button { cursor: url(/images/cursor-petal.png) 1 1, auto; } }
+  /* wave pattern header */
+  .top { position: relative; margin: 0 calc(50% - 50vw) 18px; padding: 34px 16px 30px; border-radius: 0 0 50% 50% / 0 0 46px 46px; box-shadow: inset 0 -30px 40px -30px rgba(0,0,0,.25); background: var(--mint) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='28' viewBox='0 0 56 28'%3E%3Cg fill='%237eecc4' stroke='%2356d3a6' stroke-width='2.2'%3E%3Ccircle cx='0' cy='0' r='26'/%3E%3Ccircle cx='0' cy='0' r='19'/%3E%3Ccircle cx='0' cy='0' r='12'/%3E%3Ccircle cx='0' cy='0' r='5'/%3E%3Ccircle cx='56' cy='0' r='26'/%3E%3Ccircle cx='56' cy='0' r='19'/%3E%3Ccircle cx='56' cy='0' r='12'/%3E%3Ccircle cx='56' cy='0' r='5'/%3E%3Ccircle cx='28' cy='14' r='26'/%3E%3Ccircle cx='28' cy='14' r='19'/%3E%3Ccircle cx='28' cy='14' r='12'/%3E%3Ccircle cx='28' cy='14' r='5'/%3E%3Ccircle cx='0' cy='28' r='26'/%3E%3Ccircle cx='0' cy='28' r='19'/%3E%3Ccircle cx='0' cy='28' r='12'/%3E%3Ccircle cx='0' cy='28' r='5'/%3E%3Ccircle cx='56' cy='28' r='26'/%3E%3Ccircle cx='56' cy='28' r='19'/%3E%3Ccircle cx='56' cy='28' r='12'/%3E%3Ccircle cx='56' cy='28' r='5'/%3E%3C/g%3E%3C/svg%3E") 0 0 / 56px 28px; }
+  main { width: 100%; max-width: 460px; text-align: center; }
+  .avatar { position: relative; width: 112px; height: 112px; border-radius: 28px; border: 4px solid #161616; background: #222; object-fit: contain; padding: 8px; box-shadow: 0 14px 30px -10px rgba(0,0,0,.6); }
+  h1 { font-family: Fredoka; font-size: 32px; margin: 12px 0 0; color: #fff; text-shadow: 0 2px 0 #0b2a1f, 0 0 2px #0b2a1f, 0 0 14px rgba(11,42,31,.55); display: flex; align-items: center; justify-content: center; gap: 10px; }
+  h1 img { width: 32px; height: 32px; filter: drop-shadow(0 2px 0 #0b2a1f); image-rendering: pixelated; }
+  .bio { color: #b5b5b5; margin: 0 0 24px; }
+  .links { display: grid; gap: 12px; }
+  .btn { display: flex; align-items: center; gap: 14px; width: 100%; padding: 14px 18px; border-radius: 16px; border: 1px solid #2e2e2e; background: #1f1f1f; color: inherit; text-decoration: none; font: inherit; text-align: left; transition: transform .2s, border-color .2s, background .2s; }
+  .btn:hover { transform: translateY(-2px); border-color: var(--mint); }
+  .btn.main { background: var(--mint); color: var(--ink); border-color: var(--mint); }
+  .ic { width: 44px; height: 44px; flex-shrink: 0; border-radius: 13px; display: grid; place-items: center; color: var(--mint); background: radial-gradient(circle at 30% 20%, rgba(126,236,196,.28), rgba(126,236,196,.06) 70%); border: 1px solid rgba(126,236,196,.32); box-shadow: inset 0 1px 0 rgba(255,255,255,.12), 0 6px 16px -8px rgba(126,236,196,.55); transition: transform .25s; }
+  .ic svg { width: 21px; height: 21px; }
+  .btn:hover .ic { transform: scale(1.08) rotate(-4deg); }
+  .btn.main .ic { color: var(--mint); background: linear-gradient(145deg, #12382b, #0b2a1f); border-color: rgba(11,42,31,.6); box-shadow: inset 0 1px 0 rgba(255,255,255,.1), 0 6px 14px -6px rgba(11,42,31,.6); }
+  .btn > div { min-width: 0; }
+  .btn b, .btn span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .btn b { display: block; font-size: 16px; }
+  .btn span { display: block; font-size: 13px; opacity: .75; }
+  .btn .go { margin-left: auto; padding-left: 8px; font-style: normal; opacity: .6; font-size: 18px; }
+  .copy-ok { color: var(--mint); }
+  footer { margin-top: 30px; font-size: 13px; color: #777; }
+  footer a { color: var(--mint); text-decoration: none; }
+</style>
+</head>
+<body>
+<main>
+  <div class="top">
+    <img class="avatar" src="/images/avatar-tokio-head.png" alt="Tokio's Minecraft head">
+    <h1><img src="/images/tw-icon.svg" alt="">Tokio</h1>
+  </div>
+  <p class="bio">3D modeler · Poster &amp; video editor · Owner of Tokyo Core SMP</p>
+
+  <div class="links">
+    <a class="btn main" href="/">
+      <i class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.1-3.1a2 2 0 0 0-2.8 0L6 21"/></svg></i>
+      <div><b>My portfolio</b><span>Posters, edits &amp; plugins</span></div><i class="go">→</i>
+    </a>
+    <a class="btn" href="https://www.tiktok.com/@mateotoki" target="_blank" rel="noopener">
+      <i class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 5.8A4.3 4.3 0 0115.5 3h-3.1v12.4a2.6 2.6 0 11-1.8-2.5V9.8a5.7 5.7 0 104.9 5.6V9.1a7.3 7.3 0 004.3 1.4V7.4a4.3 4.3 0 01-3.2-1.6z"/></svg></i>
+      <div><b>TikTok</b><span>@mateotoki</span></div><i class="go">→</i>
+    </a>
+    <a class="btn" href="https://discord.gg/tokyocoresmp" target="_blank" rel="noopener">
+      <i class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.3 4.4A19.8 19.8 0 0015.4 3l-.6 1.3a18.4 18.4 0 00-5.6 0L8.6 3a19.7 19.7 0 00-4.9 1.4C.6 9.1-.3 13.6.1 18.1a19.9 19.9 0 006 3l1.3-2a13 13 0 01-2-1l.5-.4a14.2 14.2 0 0012.2 0l.5.4c-.6.4-1.3.7-2 1l1.3 2a19.8 19.8 0 006-3c.5-5.2-.9-9.7-3.6-13.7zM8 15.4c-1.2 0-2.2-1.1-2.2-2.4S6.8 10.6 8 10.6s2.2 1.1 2.2 2.4-1 2.4-2.2 2.4zm8 0c-1.2 0-2.2-1.1-2.2-2.4s1-2.4 2.2-2.4 2.2 1.1 2.2 2.4-1 2.4-2.2 2.4z"/></svg></i>
+      <div><b>Join Tokyo Core SMP</b><span>Our Discord community</span></div><i class="go">→</i>
+    </a>
+    <button class="btn" id="ip" type="button">
+      <i class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></i>
+      <div><b>Copy server IP</b><span id="ip-txt">play.tokyocoresmp.xyz</span></div><i class="go">⧉</i>
+    </button>
+  </div>
+  <footer>Made by <a href="/">TokioWorks</a> · Imagine. Design. Create.</footer>
+</main>
+<script>
+  const ip = document.getElementById('ip'), txt = document.getElementById('ip-txt');
+  ip.addEventListener('click', async () => {
+    try { await navigator.clipboard.writeText('play.tokyocoresmp.xyz'); txt.textContent = 'Copied! See you in game ✿'; txt.classList.add('copy-ok'); }
+    catch (e) { txt.textContent = 'play.tokyocoresmp.xyz'; }
+    setTimeout(() => { txt.textContent = 'play.tokyocoresmp.xyz'; txt.classList.remove('copy-ok'); }, 2200);
+  });
+</script>
+</body>
+</html>
